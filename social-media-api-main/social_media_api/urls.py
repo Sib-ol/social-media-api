@@ -23,21 +23,15 @@ from drf_spectacular.views import (
     SpectacularSwaggerView,
     SpectacularRedocView,
 )
+from .views import home  # ✅ Import your home view
 
 urlpatterns = [
+    path("", home),  # ✅ Add this route for the root URL
     path("admin/", admin.site.urls),
     path("api/user/", include("user.urls", namespace="user")),
     path("api/core_social/", include("core_social.urls", namespace="core_social")),
     path("__debug__/", include("debug_toolbar.urls")),
     path("api/doc/", SpectacularAPIView.as_view(), name="schema"),
-    path(
-        "api/doc/swagger/",
-        SpectacularSwaggerView.as_view(url_name="schema"),
-        name="swagger-ui",
-    ),
-    path(
-        "api/doc/redoc/",
-        SpectacularRedocView.as_view(url_name="schema"),
-        name="redoc",
-    ),
+    path("api/doc/swagger/", SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
+    path("api/doc/redoc/", SpectacularRedocView.as_view(url_name="schema"), name="redoc"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
