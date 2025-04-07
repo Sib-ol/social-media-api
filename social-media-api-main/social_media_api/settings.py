@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = False
 
 
-ALLOWED_HOSTS = ["social-media-api.onrender.com"]
+ALLOWED_HOSTS = ["social-media-api-p950.onrender.com"]
 
 
 INTERNAL_IPS = [
